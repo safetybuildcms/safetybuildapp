@@ -1,0 +1,20 @@
+{
+  "name": "safetybuild-workspace",
+  "private": true,
+  "scripts": {
+    "web": "pnpm --filter safetybuild-web dev",
+    "web:test": "pnpm --filter safetybuild-web test",
+    "mobile": "pnpm --filter safetybuild-app start",
+    "mobile:test": "pnpm --filter safetybuild-app test",
+    "shared": "pnpm --filter safetybuild-shared dev",
+    "shared:watch": "pnpm --filter safetybuild-shared watch",
+    "shared:build": "pnpm --filter safetybuild-shared build",
+    "shared:dev": "pnpm --filter safetybuild-shared dev"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "safetybuild-shared": "workspace:^",
+    "prettier": "^3.4.2",
+    "workspace": "^0.0.1-preview.2"
+  }
+}

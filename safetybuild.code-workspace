@@ -1,0 +1,25 @@
+{
+  "folders": [
+    {
+      "name": "Workspace Root",
+      "path": "."
+    },
+    {
+      "name": "Brief",
+      "path": "./Brief"
+    },
+    {
+      "name": "shared",
+      "path": "./shared"
+    },
+    {
+      "name": "SafetyBuildApp",
+      "path": "./SafetyBuildApp"
+    },
+    {
+      "name": "SafetyBuildWeb",
+      "path": "./SafetyBuildWeb"
+    }
+  ],
+  "settings": {}
+}

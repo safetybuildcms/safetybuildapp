@@ -1,0 +1,41 @@
+{
+  "name": "safetybuild-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "test:dev": "concurrently -n \"VITE,VITEST\" -c \"blue,green\" \"vite\" \"vitest --watch\"",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.x.x",
+    "@mantine/hooks": "^7.x.x",
+    "@tanstack/react-query": "^5.x.x",
+    "safetybuild-shared": "workspace:^",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.x.x"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@testing-library/user-event": "^14.6.0",
+    "@types/jest": "^29.5.14",
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/coverage-c8": "^0.33.0",
+    "concurrently": "^9.1.2",
+    "jsdom": "^26.0.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8",
+    "vitest": "^3.0.2"
+  }
+}
