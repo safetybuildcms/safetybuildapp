@@ -9,7 +9,9 @@
     "shared": "pnpm --filter safetybuild-shared dev",
     "shared:watch": "pnpm --filter safetybuild-shared watch",
     "shared:build": "pnpm --filter safetybuild-shared build",
-    "shared:dev": "pnpm --filter safetybuild-shared dev"
+    "shared:dev": "pnpm --filter safetybuild-shared dev",
+    "shared:test": "pnpm --filter safetybuild-shared test",
+    "shared:test:watch": "pnpm --filter safetybuild-shared test:watch"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

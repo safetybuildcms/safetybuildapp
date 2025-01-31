@@ -5,11 +5,6 @@ import { Storable } from './storable'
 
 const LOOKUP_FIELD_KEY = '_lookupFields'
 
-/**
- * Implements storage service logic
- * Used by StorageService to call implementation specific logic
- */
-
 type LookupField = {
   key: string
   typeName: string
@@ -48,6 +43,10 @@ export class StorageService {
     for (let key of Object.keys(item)) {
       let value = item[key]
       if (isIRecordArray(value)) {
+        if (value.length === 0) {
+          result[key] = []
+          continue
+        }
         result[key] = value.map((item) => item.id)
         lookupFields.push({ key, typeName: value[0].typeName })
       } else if (isIRecord(value)) {

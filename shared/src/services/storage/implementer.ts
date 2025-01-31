@@ -2,6 +2,10 @@ import { StorageResult } from './results'
 
 import { Storable } from './storable'
 
+/**
+ * Implements storage service logic
+ * Used by StorageService to call implementation specific logic
+ */
 export abstract class StorageServiceImplementer {
   // todo - id field init
   /**
