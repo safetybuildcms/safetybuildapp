@@ -1,6 +1,7 @@
 const registeredStorables = new Map<string, Storable>()
 
-export interface Storable {
+export type Storable = {
+  [key: string]: any
   id: string | number
   typeName: string
 }
