@@ -1,4 +1,3 @@
-import { createClient } from '@supabase/supabase-js'
 import { getAuthService, initializeSupabase } from 'safetybuild-shared'
 import { deleteUserByEmail, getSupabaseClient } from 'safetybuild-shared'
 

@@ -3,6 +3,17 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js'
 let supabase: SupabaseClient | null = null
 let _supabaseUrl: string | null = null
 
+export const getSupabaseEnv = () => {
+  const SUPABASE_URL = process.env.SUPABASE_URL ?? ''
+  const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? ''
+  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error('SUPABASE_URL, SUPABASE_ANON_KEY, and SUPABASE_SERVICE_ROLE_KEY must be set')
+  }
+  return { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY }
+}
+
 export const initializeSupabase = (supabaseUrl: string, supabaseAnonKey: string): SupabaseClient => {
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error('Supabase URL and Anon Key must be provided to initialize Supabase.')
