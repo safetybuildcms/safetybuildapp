@@ -9,6 +9,8 @@
     "build:cjs": "tsc",
     "build:esm": "tsc --module ESNext --outDir ./dist/esm",
     "dev": "nodemon  --watch src --exec tsx src/run.ts",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "build": "pnpm build:cjs && pnpm build:esm",
     "watch": "concurrently -n \"CJS,ESM\" -c \"blue,green\" \"tsc -w\" \"tsc --module ESNext --outDir ./dist/esm -w\""
   },
@@ -17,8 +19,12 @@
     "dotenv": "^16.4.7"
   },
   "devDependencies": {
+    "@jest/globals": "^29.7.0",
+    "@types/jest": "^29.5.14",
     "@types/node": "^20.x.x",
+    "jest": "^29.2.1",
     "nodemon": "^3.1.9",
+    "ts-jest": "^29.2.5",
     "tsx": "^4.19.2",
     "typescript": "^5.x.x"
   }

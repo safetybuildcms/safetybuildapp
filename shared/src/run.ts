@@ -1,26 +1,15 @@
-console.log('run.ts')
-import { randomUUID } from 'crypto'
-import { getAuthService } from './services/auth'
-import { deleteUserByEmail, getSupabaseClient, initializeSupabase } from './services/supabase'
+import { db_test } from './actions/database'
 import dotenv from 'dotenv'
+import { fs_storage_test } from './actions/storage'
 dotenv.config({ path: '../SafetyBuildApp/.env' })
 
-const SUPABASE_URL = process.env.SUPABASE_URL ?? ''
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? ''
-const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+let actions = new Map<string, () => void>()
+actions.set('db-test', db_test)
+actions.set('fs-storage-test', fs_storage_test)
 
-initializeSupabase(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-let adminClient = getSupabaseClient(SUPABASE_SERVICE_ROLE_KEY)
-let testEmail = 'test@test.com'
-deleteUserByEmail(adminClient, testEmail)
-  .then(async () => {
-    let password = randomUUID()
-    let auth = getAuthService()
-    await auth.signUp(testEmail, password)
-    await auth.signIn(testEmail, password)
-    console.log('run.ts done')
-  })
-  .catch((error) => {
-    console.log('Error deleting user', error)
-  })
+let action = actions.get(process.argv[2])
+if (action) {
+  action()
+} else {
+  console.log('Unknown action', process.argv[2])
+}
