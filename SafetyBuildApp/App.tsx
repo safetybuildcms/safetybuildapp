@@ -8,6 +8,7 @@ import { PaperProvider } from 'react-native-paper'
 import * as Linking from 'expo-linking'
 import { useEffect } from 'react'
 import { getAuthService } from 'safetybuild-shared'
+import './global.css'
 
 export default function App() {
   const authService = getAuthService()

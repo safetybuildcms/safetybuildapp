@@ -31,7 +31,9 @@ export function RegisterScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
-      <Text variant='headlineMedium'>Register</Text>
+      <Text variant='headlineMedium' className='hidden'>
+        Register
+      </Text>
 
       <TextInput label='Email' value={email} onChangeText={setEmail} style={styles.input} />
 

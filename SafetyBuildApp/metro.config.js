@@ -1,4 +1,6 @@
 const { getDefaultConfig } = require('expo/metro-config')
+const { withNativeWind } = require('nativewind/metro')
+
 const path = require('path')
 
 // Find the workspace root (assuming this is the Expo app)
@@ -19,4 +21,4 @@ config.resolver.nodeModulesPaths = [
 // Ensure the correct file extensions are used
 config.resolver.sourceExts = [...config.resolver.sourceExts, 'jsx', 'js', 'ts', 'tsx']
 
-module.exports = config
+module.exports = withNativeWind(config, { input: './global.css' })
