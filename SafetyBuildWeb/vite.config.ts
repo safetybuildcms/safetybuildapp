@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [tailwindcss(), react()],
   test: {
     globals: true, // Allows global `describe`, `it`, `expect` without imports
     environment: 'jsdom', // Simulates a browser-like environment
