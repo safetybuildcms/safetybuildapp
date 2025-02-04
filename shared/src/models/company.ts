@@ -1,15 +1,17 @@
 import { IRecord } from '../types/IRecord'
 import { Contractor } from './contractor'
-import { registerStorable } from '../services/storage/storable'
-
+import { registerStorable, Storable } from '../services/storage/storable'
 export const COMPANY_TYPE_NAME = 'Company'
 
 export interface Company extends IRecord {
+  typeName: typeof COMPANY_TYPE_NAME
   businessPhone: string
   businessEmail: string
   name: string
   contractors: Contractor[]
 }
+
+export type InsertCompany = Partial<Company> & Storable
 
 export const CompanyTypeSample: Company = {
   typeName: COMPANY_TYPE_NAME,

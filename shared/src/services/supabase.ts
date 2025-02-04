@@ -1,7 +1,18 @@
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient, SupabaseClientOptions } from '@supabase/supabase-js'
 
 let supabase: SupabaseClient | null = null
 let _supabaseUrl: string | null = null
+
+export const getSupabaseEnv = () => {
+  const SUPABASE_URL = process.env.SUPABASE_URL ?? ''
+  const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY ?? ''
+  const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+
+  if (!SUPABASE_URL || !SUPABASE_ANON_KEY || !SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error('SUPABASE_URL, SUPABASE_ANON_KEY, and SUPABASE_SERVICE_ROLE_KEY must be set')
+  }
+  return { SUPABASE_URL, SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY }
+}
 
 export const initializeSupabase = (supabaseUrl: string, supabaseAnonKey: string): SupabaseClient => {
   if (!supabaseUrl || !supabaseAnonKey) {
@@ -26,7 +37,28 @@ export const getSupabaseClient = (supabaseKey?: string): SupabaseClient => {
 
   return supabase
 }
+/**
+ * Enables running options in the context of a user
+ * access_token can be obtained from Session returned by getAuthService().signIn
+ * @param supabaseUrl
+ * @param supabaseAnonKey
+ * @param access_token
+ * @returns
+ */
+export const getUserClient = async (supabaseUrl: string, supabaseAnonKey: string, access_token: string) => {
+  const options: SupabaseClientOptions<any> = {
+    global: {
+      headers: {
+        Authorization: `Bearer ${access_token}`
+      }
+    },
+    auth: {
+      persistSession: false
+    }
+  }
 
+  return createClient(supabaseUrl, supabaseAnonKey, options)
+}
 export const getUserByEmail = async (supabase: SupabaseClient, email: string) => {
   // Fetch all users (this supports pagination)
   const { data, error } = await supabase.auth.admin.listUsers()

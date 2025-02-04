@@ -15,6 +15,7 @@ export const fs_storage_test = async () => {
 
   let contractor: Contractor = {
     typeName: 'Contractor',
+    uid: 'contractor',
     id: storage.generateId(),
     createdAt: Date.now(),
     updatedAt: Date.now(),
@@ -29,6 +30,7 @@ export const fs_storage_test = async () => {
     id: storage.generateId(),
     createdAt: Date.now(),
     updatedAt: Date.now(),
+    uid: 'contractor',
     name: 'Document',
     url: 'https://example.com/document.pdf',
     policyNumber: '1234567890',

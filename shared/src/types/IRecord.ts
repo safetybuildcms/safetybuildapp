@@ -1,9 +1,21 @@
 export interface IRecord {
   typeName: string
-  id: string | number
+  id: string
   createdAt: number
   updatedAt: number
 }
+
+export type omitFromIRecord = 'id' | 'createdAt' | 'updatedAt'
+
+export type InsertIRecord<T> = Omit<T, omitFromIRecord>
+
+export interface IUserRecord {
+  uid: string
+}
+
+export type omnitFromIUserRecord = omitFromIRecord | 'uid'
+
+export type InsertIUserRecord<T> = Omit<T, omnitFromIUserRecord>
 
 export const isIRecord = (item: any): item is IRecord => {
   return (

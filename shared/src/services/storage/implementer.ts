@@ -16,6 +16,11 @@ export abstract class StorageServiceImplementer {
   abstract save<T extends Storable>(item: T, overwrite?: boolean): Promise<StorageResult<T>>
   abstract update<T extends Storable>(item: T): Promise<StorageResult<T>>
   abstract delete<T extends Storable>(item: T): Promise<StorageResult<T>>
+  abstract load<T extends Storable>(
+    type: T | string,
+    id?: string | number,
+    relationName?: string
+  ): Promise<StorageResult<T>>
   abstract load<T extends Storable>(type: T | string, id?: string | number): Promise<StorageResult<T>>
   abstract load<T extends Storable>(type: T | string): Promise<StorageResult<T>>
   typeNameOf<T extends Storable>(type: T | string): string {

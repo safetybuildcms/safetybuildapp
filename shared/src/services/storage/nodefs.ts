@@ -93,7 +93,14 @@ export class NodeFsStorageService extends StorageServiceImplementer {
     }
   }
 
-  async load<T extends Storable>(type: T | string, id?: string | number): Promise<StorageResult<T>> {
+  async load<T extends Storable>(
+    type: T | string,
+    id?: string | number,
+    relationName?: string
+  ): Promise<StorageResult<T>> {
+    if (relationName) {
+      throw Error(`Relation name not implemented in NodeFsStorageService`)
+    }
     if (id === undefined) {
       return this.loadList(type)
     } else {

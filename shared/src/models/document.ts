@@ -1,5 +1,5 @@
-import { IRecord } from '../types/IRecord'
-import { registerStorable } from '../services/storage/storable'
+import { IRecord, IUserRecord } from '../types/IRecord'
+import { registerStorable, Storable } from '../services/storage/storable'
 
 export const DOCUMENT_TYPE_NAME = 'Document'
 
@@ -18,7 +18,8 @@ export enum DocumentStatus {
   REJECTED = 'Rejected'
 }
 
-export interface Document extends IRecord {
+export interface Document extends IRecord, IUserRecord {
+  typeName: typeof DOCUMENT_TYPE_NAME
   name: string
   url: string
   policyNumber: string
@@ -26,6 +27,8 @@ export interface Document extends IRecord {
   status: DocumentStatus
   type: DocumentType
 }
+
+export type InsertDocument = Partial<Document> & Storable
 
 export const DocumentTypeSample: Document = {
   typeName: DOCUMENT_TYPE_NAME,
@@ -37,7 +40,8 @@ export const DocumentTypeSample: Document = {
   policyNumber: '1234567890',
   expiryDate: 0,
   status: DocumentStatus.ACTIVE,
-  type: DocumentType.PUBLIC_LIABILITY
+  type: DocumentType.PUBLIC_LIABILITY,
+  uid: 'document'
 }
 
 registerStorable(DocumentTypeSample)
